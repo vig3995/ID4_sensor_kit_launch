@@ -1,0 +1,187 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="sensor_kit_macro" params="parent x y z roll pitch yaw">
+    <xacro:include filename="$(find imu_description)/urdf/imu.xacro"/>
+
+    <xacro:arg name="gpu" default="false"/>
+    <xacro:arg name="config_dir" default="$(find id4_sensor_kit_description)/config"/>
+
+    <xacro:property name="sensor_kit_base_link" default="sensor_kit_base_link"/>
+
+    <joint name="${sensor_kit_base_link}_joint" type="fixed">
+      <origin rpy="${roll} ${pitch} ${yaw}" xyz="${x} ${y} ${z}"/>
+      <parent link="${parent}"/>
+      <child link="${sensor_kit_base_link}"/>
+    </joint>
+    <link name="${sensor_kit_base_link}">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </link>
+
+    <xacro:property name="calibration" value="${xacro.load_yaml('$(arg config_dir)/sensor_kit_calibration.yaml')}"/>
+
+    <!-- lidar right -->
+    <joint name="lidar_right_base_link_joint" type="fixed">
+      <origin
+        xyz="${calibration['sensor_kit_base_link']['lidar_right_base_link']['x']}
+             ${calibration['sensor_kit_base_link']['lidar_right_base_link']['y']}
+             ${calibration['sensor_kit_base_link']['lidar_right_base_link']['z']}"
+        rpy="${calibration['sensor_kit_base_link']['lidar_right_base_link']['roll']}
+             ${calibration['sensor_kit_base_link']['lidar_right_base_link']['pitch']}
+             ${calibration['sensor_kit_base_link']['lidar_right_base_link']['yaw']}"
+      />
+      <parent link="${sensor_kit_base_link}"/>
+      <child link="lidar_right_base_link"/>
+    </joint>
+    <link name="lidar_right_base_link"/>
+
+    <!-- lidar left -->
+    <joint name="lidar_left_base_link_joint" type="fixed">
+      <origin
+        xyz="${calibration['sensor_kit_base_link']['lidar_left_base_link']['x']}
+             ${calibration['sensor_kit_base_link']['lidar_left_base_link']['y']}
+             ${calibration['sensor_kit_base_link']['lidar_left_base_link']['z']}"
+        rpy="${calibration['sensor_kit_base_link']['lidar_left_base_link']['roll']}
+             ${calibration['sensor_kit_base_link']['lidar_left_base_link']['pitch']}
+             ${calibration['sensor_kit_base_link']['lidar_left_base_link']['yaw']}"
+      />
+      <parent link="${sensor_kit_base_link}"/>
+      <child link="lidar_left_base_link"/>
+    </joint>
+    <link name="lidar_left_base_link"/>
+
+    <!-- camera0 -->
+    <joint name="camera0_camera_link_joint" type="fixed">
+      <origin
+        xyz="${calibration['sensor_kit_base_link']['camera0/camera_link']['x']}
+             ${calibration['sensor_kit_base_link']['camera0/camera_link']['y']}
+             ${calibration['sensor_kit_base_link']['camera0/camera_link']['z']}"
+        rpy="${calibration['sensor_kit_base_link']['camera0/camera_link']['roll']}
+             ${calibration['sensor_kit_base_link']['camera0/camera_link']['pitch']}
+             ${calibration['sensor_kit_base_link']['camera0/camera_link']['yaw']}"
+      />
+      <parent link="${sensor_kit_base_link}"/>
+      <child link="camera0/camera_link"/>
+    </joint>
+    <link name="camera0/camera_link"/>
+
+    <!-- camera1 -->
+    <joint name="camera1_camera_link_joint" type="fixed">
+      <origin
+        xyz="${calibration['sensor_kit_base_link']['camera1/camera_link']['x']}
+             ${calibration['sensor_kit_base_link']['camera1/camera_link']['y']}
+             ${calibration['sensor_kit_base_link']['camera1/camera_link']['z']}"
+        rpy="${calibration['sensor_kit_base_link']['camera1/camera_link']['roll']}
+             ${calibration['sensor_kit_base_link']['camera1/camera_link']['pitch']}
+             ${calibration['sensor_kit_base_link']['camera1/camera_link']['yaw']}"
+      />
+      <parent link="${sensor_kit_base_link}"/>
+      <child link="camera1/camera_link"/>
+    </joint>
+    <link name="camera1/camera_link"/>
+
+    <!-- camera2 -->
+    <joint name="camera2_camera_link_joint" type="fixed">
+      <origin
+        xyz="${calibration['sensor_kit_base_link']['camera2/camera_link']['x']}
+             ${calibration['sensor_kit_base_link']['camera2/camera_link']['y']}
+             ${calibration['sensor_kit_base_link']['camera2/camera_link']['z']}"
+        rpy="${calibration['sensor_kit_base_link']['camera2/camera_link']['roll']}
+             ${calibration['sensor_kit_base_link']['camera2/camera_link']['pitch']}
+             ${calibration['sensor_kit_base_link']['camera2/camera_link']['yaw']}"
+      />
+      <parent link="${sensor_kit_base_link}"/>
+      <child link="camera2/camera_link"/>
+    </joint>
+    <link name="camera2/camera_link"/>
+
+    <!-- camera3 -->
+    <joint name="camera3_camera_link_joint" type="fixed">
+      <origin
+        xyz="${calibration['sensor_kit_base_link']['camera3/camera_link']['x']}
+             ${calibration['sensor_kit_base_link']['camera3/camera_link']['y']}
+             ${calibration['sensor_kit_base_link']['camera3/camera_link']['z']}"
+        rpy="${calibration['sensor_kit_base_link']['camera3/camera_link']['roll']}
+             ${calibration['sensor_kit_base_link']['camera3/camera_link']['pitch']}
+             ${calibration['sensor_kit_base_link']['camera3/camera_link']['yaw']}"
+      />
+      <parent link="${sensor_kit_base_link}"/>
+      <child link="camera3/camera_link"/>
+    </joint>
+    <link name="camera3/camera_link"/>
+
+    <!-- camera4 -->
+    <joint name="camera4_camera_link_joint" type="fixed">
+      <origin
+        xyz="${calibration['sensor_kit_base_link']['camera4/camera_link']['x']}
+             ${calibration['sensor_kit_base_link']['camera4/camera_link']['y']}
+             ${calibration['sensor_kit_base_link']['camera4/camera_link']['z']}"
+        rpy="${calibration['sensor_kit_base_link']['camera4/camera_link']['roll']}
+             ${calibration['sensor_kit_base_link']['camera4/camera_link']['pitch']}
+             ${calibration['sensor_kit_base_link']['camera4/camera_link']['yaw']}"
+      />
+      <parent link="${sensor_kit_base_link}"/>
+      <child link="camera4/camera_link"/>
+    </joint>
+    <link name="camera4/camera_link"/>
+
+    <!-- camera5 -->
+    <joint name="camera5_camera_link_joint" type="fixed">
+      <origin
+        xyz="${calibration['sensor_kit_base_link']['camera5/camera_link']['x']}
+             ${calibration['sensor_kit_base_link']['camera5/camera_link']['y']}
+             ${calibration['sensor_kit_base_link']['camera5/camera_link']['z']}"
+        rpy="${calibration['sensor_kit_base_link']['camera5/camera_link']['roll']}
+             ${calibration['sensor_kit_base_link']['camera5/camera_link']['pitch']}
+             ${calibration['sensor_kit_base_link']['camera5/camera_link']['yaw']}"
+      />
+      <parent link="${sensor_kit_base_link}"/>
+      <child link="camera5/camera_link"/>
+    </joint>
+    <link name="camera5/camera_link"/>
+
+    <!-- camera6 -->
+    <joint name="camera6_camera_link_joint" type="fixed">
+      <origin
+        xyz="${calibration['sensor_kit_base_link']['camera6/camera_link']['x']}
+             ${calibration['sensor_kit_base_link']['camera6/camera_link']['y']}
+             ${calibration['sensor_kit_base_link']['camera6/camera_link']['z']}"
+        rpy="${calibration['sensor_kit_base_link']['camera6/camera_link']['roll']}
+             ${calibration['sensor_kit_base_link']['camera6/camera_link']['pitch']}
+             ${calibration['sensor_kit_base_link']['camera6/camera_link']['yaw']}"
+      />
+      <parent link="${sensor_kit_base_link}"/>
+      <child link="camera6/camera_link"/>
+    </joint>
+    <link name="camera6/camera_link"/>
+
+    <!-- camera7 -->
+    <joint name="camera7_camera_link_joint" type="fixed">
+      <origin
+        xyz="${calibration['sensor_kit_base_link']['camera7/camera_link']['x']}
+             ${calibration['sensor_kit_base_link']['camera7/camera_link']['y']}
+             ${calibration['sensor_kit_base_link']['camera7/camera_link']['z']}"
+        rpy="${calibration['sensor_kit_base_link']['camera7/camera_link']['roll']}
+             ${calibration['sensor_kit_base_link']['camera7/camera_link']['pitch']}
+             ${calibration['sensor_kit_base_link']['camera7/camera_link']['yaw']}"
+      />
+      <parent link="${sensor_kit_base_link}"/>
+      <child link="camera7/camera_link"/>
+    </joint>
+    <link name="camera7/camera_link"/>
+
+    <!-- gnss -->
+    <xacro:imu_macro
+      name="gnss"
+      parent="sensor_kit_base_link"
+      namespace=""
+      x="${calibration['sensor_kit_base_link']['gnss_link']['x']}"
+      y="${calibration['sensor_kit_base_link']['gnss_link']['y']}"
+      z="${calibration['sensor_kit_base_link']['gnss_link']['z']}"
+      roll="${calibration['sensor_kit_base_link']['gnss_link']['roll']}"
+      pitch="${calibration['sensor_kit_base_link']['gnss_link']['pitch']}"
+      yaw="${calibration['sensor_kit_base_link']['gnss_link']['yaw']}"
+      fps="100"
+    />
+
+  </xacro:macro>
+</robot>
