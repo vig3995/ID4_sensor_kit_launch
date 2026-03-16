@@ -6,28 +6,24 @@
 
   <group>
     <!-- LiDAR Driver -->
-    <include file="$(find-pkg-share sample_sensor_kit_launch)/launch/lidar.launch.xml">
+    <include file="$(find-pkg-share id4_sensor_kit_launch)/launch/lidar.launch.xml">
       <arg name="launch_driver" value="$(var launch_driver)"/>
       <arg name="vehicle_mirror_param_file" value="$(var vehicle_mirror_param_file)"/>
       <arg name="pointcloud_container_name" value="$(var pointcloud_container_name)"/>
     </include>
 
     <!-- Camera Driver -->
-    <!-- <include file="$(find-pkg-share sample_sensor_kit_launch)/launch/camera.launch.xml">
-      <arg name="launch_driver" value="$(var launch_driver)" />
+    <!-- Camera runs on HOST via custom C++ publisher, not launched here -->
+    <!-- <include file="$(find-pkg-share id4_sensor_kit_launch)/launch/camera.launch.xml">
+      <arg name="launch_driver" value="$(var launch_driver)"/>
     </include> -->
 
-    <!-- IMU Driver -->
-    <include file="$(find-pkg-share sample_sensor_kit_launch)/launch/imu.launch.xml">
+    <!-- GNSS + IMU Driver (ADMA handles both) -->
+    <include file="$(find-pkg-share id4_sensor_kit_launch)/launch/gnss.launch.xml">
       <arg name="launch_driver" value="$(var launch_driver)"/>
     </include>
 
-    <!-- GNSS Driver -->
-    <include file="$(find-pkg-share sample_sensor_kit_launch)/launch/gnss.launch.xml">
-      <arg name="launch_driver" value="$(var launch_driver)"/>
-    </include>
-
-    <!-- Vehicle Velocity Converter  -->
+    <!-- Vehicle Velocity Converter -->
     <include file="$(find-pkg-share autoware_vehicle_velocity_converter)/launch/vehicle_velocity_converter.launch.xml">
       <arg name="input_vehicle_velocity_topic" value="/vehicle/status/velocity_status"/>
       <arg name="output_twist_with_covariance" value="/sensing/vehicle_velocity_converter/twist_with_covariance"/>
