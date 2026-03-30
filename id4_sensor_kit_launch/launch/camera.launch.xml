@@ -1,26 +1,93 @@
 <launch>
   <arg name="launch_driver" default="true"/>
-  <arg name="camera_type" default="left"/>
 
-  <group>
-    <push-ros-namespace namespace="camera"/>
-    <group>
-      <push-ros-namespace namespace="traffic_light"/>
+  <!-- Relay all 8 cameras from /cameraX/ to /sensing/camera/cameraX/ -->
+  <node pkg="topic_tools" exec="relay" name="camera0_image_relay" output="log">
+    <param name="input_topic"  value="/camera0/image_raw/compressed"/>
+    <param name="output_topic" value="/sensing/camera/camera0/image_raw/compressed"/>
+    <param name="type" value="sensor_msgs/msg/CompressedImage"/>
+  </node>
+  <node pkg="topic_tools" exec="relay" name="camera0_info_relay" output="log">
+    <param name="input_topic"  value="/camera0/camera_info"/>
+    <param name="output_topic" value="/sensing/camera/camera0/camera_info"/>
+    <param name="type" value="sensor_msgs/msg/CameraInfo"/>
+  </node>
 
-      <!-- (usb_cam_node is assumed to have launched on logging PC) -->
-      <node pkg="topic_tools" exec="relay" name="tl_camera_info_relay" output="log">
-        <param name="input_topic" value="$(var camera_type)/camera_info"/>
-        <param name="output_topic" value="camera_info"/>
-        <param name="type" value="sensor_msgs/msg/CameraInfo"/>
-        <param name="reliability" value="best_effort"/>
-      </node>
+  <node pkg="topic_tools" exec="relay" name="camera1_image_relay" output="log">
+    <param name="input_topic"  value="/camera1/image_raw/compressed"/>
+    <param name="output_topic" value="/sensing/camera/camera1/image_raw/compressed"/>
+    <param name="type" value="sensor_msgs/msg/CompressedImage"/>
+  </node>
+  <node pkg="topic_tools" exec="relay" name="camera1_info_relay" output="log">
+    <param name="input_topic"  value="/camera1/camera_info"/>
+    <param name="output_topic" value="/sensing/camera/camera1/camera_info"/>
+    <param name="type" value="sensor_msgs/msg/CameraInfo"/>
+  </node>
 
-      <node pkg="topic_tools" exec="relay" name="tl_compressed_image_relay" output="log">
-        <param name="input_topic" value="$(var camera_type)/image_raw/compressed"/>
-        <param name="output_topic" value="image_raw/compressed"/>
-        <param name="type" value="sensor_msgs/msg/CompressedImage"/>
-        <param name="reliability" value="best_effort"/>
-      </node>
-    </group>
-  </group>
+  <node pkg="topic_tools" exec="relay" name="camera2_image_relay" output="log">
+    <param name="input_topic"  value="/camera2/image_raw/compressed"/>
+    <param name="output_topic" value="/sensing/camera/camera2/image_raw/compressed"/>
+    <param name="type" value="sensor_msgs/msg/CompressedImage"/>
+  </node>
+  <node pkg="topic_tools" exec="relay" name="camera2_info_relay" output="log">
+    <param name="input_topic"  value="/camera2/camera_info"/>
+    <param name="output_topic" value="/sensing/camera/camera2/camera_info"/>
+    <param name="type" value="sensor_msgs/msg/CameraInfo"/>
+  </node>
+
+  <node pkg="topic_tools" exec="relay" name="camera3_image_relay" output="log">
+    <param name="input_topic"  value="/camera3/image_raw/compressed"/>
+    <param name="output_topic" value="/sensing/camera/camera3/image_raw/compressed"/>
+    <param name="type" value="sensor_msgs/msg/CompressedImage"/>
+  </node>
+  <node pkg="topic_tools" exec="relay" name="camera3_info_relay" output="log">
+    <param name="input_topic"  value="/camera3/camera_info"/>
+    <param name="output_topic" value="/sensing/camera/camera3/camera_info"/>
+    <param name="type" value="sensor_msgs/msg/CameraInfo"/>
+  </node>
+
+  <node pkg="topic_tools" exec="relay" name="camera4_image_relay" output="log">
+    <param name="input_topic"  value="/camera4/image_raw/compressed"/>
+    <param name="output_topic" value="/sensing/camera/camera4/image_raw/compressed"/>
+    <param name="type" value="sensor_msgs/msg/CompressedImage"/>
+  </node>
+  <node pkg="topic_tools" exec="relay" name="camera4_info_relay" output="log">
+    <param name="input_topic"  value="/camera4/camera_info"/>
+    <param name="output_topic" value="/sensing/camera/camera4/camera_info"/>
+    <param name="type" value="sensor_msgs/msg/CameraInfo"/>
+  </node>
+
+  <node pkg="topic_tools" exec="relay" name="camera5_image_relay" output="log">
+    <param name="input_topic"  value="/camera5/image_raw/compressed"/>
+    <param name="output_topic" value="/sensing/camera/camera5/image_raw/compressed"/>
+    <param name="type" value="sensor_msgs/msg/CompressedImage"/>
+  </node>
+  <node pkg="topic_tools" exec="relay" name="camera5_info_relay" output="log">
+    <param name="input_topic"  value="/camera5/camera_info"/>
+    <param name="output_topic" value="/sensing/camera/camera5/camera_info"/>
+    <param name="type" value="sensor_msgs/msg/CameraInfo"/>
+  </node>
+
+  <node pkg="topic_tools" exec="relay" name="camera6_image_relay" output="log">
+    <param name="input_topic"  value="/camera6/image_raw/compressed"/>
+    <param name="output_topic" value="/sensing/camera/camera6/image_raw/compressed"/>
+    <param name="type" value="sensor_msgs/msg/CompressedImage"/>
+  </node>
+  <node pkg="topic_tools" exec="relay" name="camera6_info_relay" output="log">
+    <param name="input_topic"  value="/camera6/camera_info"/>
+    <param name="output_topic" value="/sensing/camera/camera6/camera_info"/>
+    <param name="type" value="sensor_msgs/msg/CameraInfo"/>
+  </node>
+
+  <node pkg="topic_tools" exec="relay" name="camera7_image_relay" output="log">
+    <param name="input_topic"  value="/camera7/image_raw/compressed"/>
+    <param name="output_topic" value="/sensing/camera/camera7/image_raw/compressed"/>
+    <param name="type" value="sensor_msgs/msg/CompressedImage"/>
+  </node>
+  <node pkg="topic_tools" exec="relay" name="camera7_info_relay" output="log">
+    <param name="input_topic"  value="/camera7/camera_info"/>
+    <param name="output_topic" value="/sensing/camera/camera7/camera_info"/>
+    <param name="type" value="sensor_msgs/msg/CameraInfo"/>
+  </node>
+
 </launch>
