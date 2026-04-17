@@ -196,4 +196,13 @@
       fps="100"
     />
   </xacro:macro>
+  <!-- Camera optical frames -->
+  <joint name="camera0_optical_joint" type="fixed"><parent link="camera0/camera_link"/><child link="camera0_optical_frame"/><origin xyz="0 0 0" rpy="0 0 0"/></joint><link name="camera0_optical_frame"/>
+  <joint name="camera1_optical_joint" type="fixed"><parent link="camera1/camera_link"/><child link="camera1_optical_frame"/><origin xyz="0 0 0" rpy="0 0 0"/></joint><link name="camera1_optical_frame"/>
+  <joint name="camera2_optical_joint" type="fixed"><parent link="camera2/camera_link"/><child link="camera2_optical_frame"/><origin xyz="0 0 0" rpy="0 0 0"/></joint><link name="camera2_optical_frame"/>
+  <joint name="camera3_optical_joint" type="fixed"><parent link="camera3/camera_link"/><child link="camera3_optical_frame"/><origin xyz="0 0 0" rpy="0 0 0"/></joint><link name="camera3_optical_frame"/>
+  <joint name="camera4_optical_joint" type="fixed"><parent link="camera4/camera_link"/><child link="camera4_optical_frame"/><origin xyz="0 0 0" rpy="0 0 0"/></joint><link name="camera4_optical_frame"/>
+  <joint name="camera5_optical_joint" type="fixed"><parent link="camera5/camera_link"/><child link="camera5_optical_frame"/><origin xyz="0 0 0" rpy="0 0 0"/></joint><link name="camera5_optical_frame"/>
+  <joint name="camera6_optical_joint" type="fixed"><parent link="camera6/camera_link"/><child link="camera6_optical_frame"/><origin xyz="0 0 0" rpy="0 0 0"/></joint><link name="camera6_optical_frame"/>
+  <joint name="camera7_optical_joint" type="fixed"><parent link="camera7/camera_link"/><child link="camera7_optical_frame"/><origin xyz="0 0 0" rpy="0 0 0"/></joint><link name="camera7_optical_frame"/>
 </robot>

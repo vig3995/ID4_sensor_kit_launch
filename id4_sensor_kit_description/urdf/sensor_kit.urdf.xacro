@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<robot name="id4" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find id4_sensor_kit_description)/urdf/sensor_kit.xacro"/>
+  <link name="base_link"/>
+  <xacro:sensor_kit_macro
+    parent="base_link"
+    x="0.8636"
+    y="0.0"
+    z="1.92"
+    roll="0.0"
+    pitch="0.0"
+    yaw="0.0"
+  />
+</robot>
