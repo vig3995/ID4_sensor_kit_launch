@@ -56,17 +56,6 @@ def generate_launch_description():
         }.items()
     )
 
-    # Lanelet2 map visualizer
-    lanelet2_map_visualizer_include = IncludeLaunchDescription(
-        XMLLaunchDescriptionSource(
-            PathJoinSubstitution([
-                FindPackageShare('autoware_lanelet2_map_visualizer'),
-                'launch',
-                'lanelet2_map_visualizer.launch.xml'
-            ])
-        )
-    )
-
     # Map TF generator
     map_tf_generator_include = IncludeLaunchDescription(
         XMLLaunchDescriptionSource(
@@ -143,7 +132,6 @@ def generate_launch_description():
         PushRosNamespace('map'),
         map_projection_loader_include,
         lanelet2_map_loader_include,
-        lanelet2_map_visualizer_include,
         map_tf_generator_include,
     ])
 
