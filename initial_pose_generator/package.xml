@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>initial_pose_generator</name>
+  <version>0.10.0</version>
+  <description>Take initial pose from GNSS Poser</description>
+  <maintainer email="Chidvilas.Karpenahalli@thi.de">Chidvilas Karpenahalli Ramakrishna</maintainer>
+  <maintainer email="Subin.Babu@thi.de">Subin Babu</maintainer>
+  <maintainer email="Adithya.Mohan@thi.de">Adithya Mohan</maintainer>
+  <license>'Apache-v2.0'</license>
+
+  <test_depend>ament_copyright</test_depend>
+  <test_depend>ament_flake8</test_depend>
+  <test_depend>ament_pep257</test_depend>
+  <test_depend>python3-pytest</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
