@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>adma_orientation_bridge</name>
+  <version>0.0.1</version>
+  <description>ADMA heading → Autoware GnssInsOrientationStamped bridge</description>
+  <maintainer email="Chidvilas.Karpenahalli@thi.de">Chidvilas Karpenahalli Ramakrishna</maintainer>
+  <maintainer email="Subin.Babu@thi.de">Subin Babu</maintainer>
+  <maintainer email="Adithya.Mohan@thi.de">Adithya Mohan</maintainer>
+  <license>Apache-2.0</license>
+
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>autoware_sensing_msgs</exec_depend>
+  <exec_depend>rosidl_default_runtime</exec_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+
+</package>

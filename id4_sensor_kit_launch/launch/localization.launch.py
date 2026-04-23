@@ -79,7 +79,7 @@ def generate_launch_description():
         launch_arguments={
             'input_topic_fix':         input_topic_fix,
             'input_topic_orientation': input_topic_orientation,
-            'use_gnss_ins_orientation': 'false',
+            'use_gnss_ins_orientation': 'true',
         }.items()
     )
 
@@ -108,6 +108,18 @@ def generate_launch_description():
         parameters=[{
             'input/odometry':                '/genesys/adma/odometry',
             'output/twist_with_covariance':  '/localization/twist_with_covariance',
+        }]
+    )
+
+    # ADMA orientation bridge — converts ADMA heading to GnssInsOrientationStamped
+    adma_orientation_bridge = Node(
+        package='adma_orientation_bridge',
+        executable='heading_to_ins_orientation',
+        name='heading_to_ins_orientation',
+        output='screen',
+        parameters=[{
+            'heading_is_degrees': True,
+            'orientation_frame': 'imu_link',
         }]
     )
 
@@ -147,5 +159,6 @@ def generate_launch_description():
         [gnss_pose_cov_inflator] +
         [gnss_to_initialpose] +
         [odom_to_twist] +
+        [adma_orientation_bridge] +
         [adma_localization_bridge]
-    )
+     )
