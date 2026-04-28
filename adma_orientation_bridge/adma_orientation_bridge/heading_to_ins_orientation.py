@@ -32,7 +32,7 @@ class HeadingToInsOrientation(Node):
         # self.pub = self.create_publisher(String, '/sensing/gnss/ins_orientation', 10)
 
     def cb(self, msg: Float64):
-        yaw = math.radians(90.0 - msg.data) if self.deg else msg.data
+        yaw = math.radians(msg.data - 90.0) if self.deg else msg.data
 
         out = GnssInsOrientationStamped()
         out.header.stamp = self.get_clock().now().to_msg()
