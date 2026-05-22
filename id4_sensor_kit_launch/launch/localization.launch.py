@@ -17,7 +17,7 @@ def generate_launch_description():
                             default='/autoware_map/test_track/map_projector_info.yaml')
 
     # ADMA topic names for ID.4
-    input_topic_fix         = '/genesys/adma/fix'
+    input_topic_fix         = '/sensing/gnss/fix'
     input_topic_orientation = '/sensing/gnss/ins_orientation'  # not used but required by gnss_poser arg
 
     declare_args = [
@@ -106,7 +106,7 @@ def generate_launch_description():
         name='odometry_to_twist',
         output='screen',
         parameters=[{
-            'input/odometry':                '/genesys/adma/odometry',
+            'input/odometry':                '/sensing/gnss/odometry',
             'output/twist_with_covariance':  '/localization/twist_with_covariance',
         }]
     )
