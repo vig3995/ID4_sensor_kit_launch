@@ -111,28 +111,6 @@ def generate_launch_description():
         }]
     )
 
-    # ADMA orientation bridge — converts ADMA heading to GnssInsOrientationStamped
-    adma_orientation_bridge = Node(
-        package='adma_orientation_bridge',
-        executable='heading_to_ins_orientation',
-        name='heading_to_ins_orientation',
-        output='screen',
-        parameters=[{
-            'heading_is_degrees': True,
-            'orientation_frame': 'imu_link',
-        }]
-    )
-
-    # ADMA localization bridge — fuses pose + twist, publishes TF map→base_link
-    adma_localization_bridge = Node(
-        package='localization_bootstrap',
-        executable='adma_localization_bridge',
-        name='adma_localization_bridge',
-        output='screen',
-        parameters=[{
-            'pose_topic':              '/localization/gnss_pose_cov',
-            'twist_topic':             '/localization/twist_with_covariance',
-            'map_frame':               'map',
             'base_link_frame':         'base_link',
             'publish_tf':              True,
             'time_sync_tolerance_ms':  150,
@@ -159,6 +137,5 @@ def generate_launch_description():
         [gnss_pose_cov_inflator] +
         [gnss_to_initialpose] +
         [odom_to_twist] +
-        [adma_orientation_bridge] +
         [adma_localization_bridge]
      )
