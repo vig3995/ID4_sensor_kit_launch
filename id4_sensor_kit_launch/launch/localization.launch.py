@@ -132,5 +132,4 @@ def generate_launch_description():
         [gnss_pose_cov_inflator] +
         [gnss_to_initialpose] +
         [odom_to_twist] +
-        [adma_localization_bridge]
      )
