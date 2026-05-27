@@ -112,6 +112,23 @@ def generate_launch_description():
     )
 
 
+    # adma localization bridge — publishes map→base_link TF
+    adma_localization_bridge = Node(
+        package="localization_bootstrap",
+        executable="adma_localization_bridge",
+        name="adma_localization_bridge",
+        output="screen",
+        parameters=[{
+            "base_link_frame":        "base_link",
+            "publish_tf":             True,
+            "time_sync_tolerance_ms": 150,
+        }],
+        remappings=[
+            ("input/pose_with_covariance",  "/localization/gnss_pose_cov"),
+            ("input/twist_with_covariance", "/localization/twist_with_covariance"),
+        ]
+    )
+
     # Groups
     map_group = GroupAction([
         PushRosNamespace('map'),
@@ -131,5 +148,6 @@ def generate_launch_description():
         [localization_group] +
         [gnss_pose_cov_inflator] +
         [gnss_to_initialpose] +
-        [odom_to_twist]
+        [odom_to_twist] +
+        [adma_localization_bridge]
      )
