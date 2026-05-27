@@ -111,11 +111,6 @@ def generate_launch_description():
         }]
     )
 
-            'base_link_frame':         'base_link',
-            'publish_tf':              True,
-            'time_sync_tolerance_ms':  150,
-        }],
-    )
 
     # Groups
     map_group = GroupAction([
