@@ -131,5 +131,5 @@ def generate_launch_description():
         [localization_group] +
         [gnss_pose_cov_inflator] +
         [gnss_to_initialpose] +
-        [odom_to_twist] +
+        [odom_to_twist]
      )
