@@ -32,7 +32,7 @@ class AdmaLocalizationBridge(Node):
         self.sub_twist = self.create_subscription(TwistWithCovarianceStamped, self.twist_topic, self.on_twist, 50)
 
         self.pub_odom = self.create_publisher(Odometry, '/localization/odometry', 10)
-        self.pub_state = self.create_publisher(KinematicState, '/localization/kinematic_state', 10)
+        self.pub_state = self.create_publisher(Odometry, '/localization/kinematic_state', 10)
         self.br = TransformBroadcaster(self) if self.publish_tf else None
 
         self.last_pose = None
@@ -86,11 +86,11 @@ class AdmaLocalizationBridge(Node):
         self.pub_odom.publish(odom)
 
         # 3) /localization/kinematic_state (pose in map, twist in base_link)
-        ks = KinematicState()
+        ks = Odometry()
         ks.header = self.last_pose.header
         ks.child_frame_id = self.base_link
-        ks.pose_with_covariance = self.last_pose.pose
-        ks.twist_with_covariance = self.last_twist.twist
+        ks.pose = self.last_pose.pose
+        ks.twist = self.last_twist.twist
         self.pub_state.publish(ks)
 
 def main():
